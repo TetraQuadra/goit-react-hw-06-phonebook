@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/actions';
+import { setFilter } from 'redux/filterSlice';
 
 export const Filter = () => {
     const [input, setInput] = useState('')
     const dispatch = useDispatch()
-    const { contacts } = useSelector((state) => state.contacts);
+    const contacts = useSelector((state) => state.contacts.contacts);
 
     useEffect(() => {
         if (!input) {
@@ -16,7 +16,7 @@ export const Filter = () => {
             contact.name.toLowerCase().includes(input.toLowerCase())
         );
         dispatch(setFilter(filtered))
-    }, [input, contacts])
+    }, [input, contacts, dispatch])
 
     return (
         <input

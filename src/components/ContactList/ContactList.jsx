@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/actions';
+import { removeContact } from 'redux/contactsSlice';
+
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const { filtered } = useSelector((state) => state.contacts);
+  const filtered = useSelector((state) => state.filter.filtered);
 
   const handleRemoveContact = (id) => {
     dispatch(removeContact(id));
